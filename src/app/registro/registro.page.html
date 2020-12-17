@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [formGroup]=regForm class="registerForm">
+    <span *ngIf="regForm.controls.email.errors?.required && regForm.controls.email.touched" class="error">*Campo
+      requerido</span>
+    <span *ngIf="regForm.controls.email.errors?.email && regForm.controls.email.touched" class="error">*Ingrese un email
+      válido. ej: correo@email.com</span>
+    <ion-item>
+      <ion-label position="floating">Email:</ion-label>
+      <ion-input required formControlName="email" type="email"></ion-input>
+    </ion-item>
+
+    <span *ngIf="regForm.controls.contrasena.errors?.required && regForm.controls.contrasena.touched"
+      class="error">*Campo requerido</span>
+    <span *ngIf="regForm.controls.contrasena.errors?.minlength && regForm.controls.contrasena.touched" class="error">*La contraseña debe tener al menos 6 caracteres</span>
+    <ion-item>
+      <ion-label position="floating">Contraseña:</ion-label>
+      <ion-input required formControlName="contrasena" type="password"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" class="primary" (click)="registrarse()">Registrarse</ion-button>
+  </div>
+
+</ion-content>
