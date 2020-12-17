@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [formGroup]=authForm class="authForm">
+    <span *ngIf="authForm.controls.email.errors?.required && authForm.controls.email.touched" class="error">*Campo
+      requerido</span>
+    <span *ngIf="authForm.controls.email.errors?.email && authForm.controls.email.touched" class="error">*Ingrese un email
+      válido. ej: correo@email.com</span>
+    <ion-item>
+      <ion-label position="floating">Email:</ion-label>
+      <ion-input required formControlName="email" type="email"></ion-input>
+    </ion-item>
+
+    <span *ngIf="authForm.controls.contrasena.errors?.required && authForm.controls.contrasena.touched"
+      class="error">*Campo requerido</span>
+    <span *ngIf="authForm.controls.contrasena.errors?.minlength && authForm.controls.contrasena.touched" class="error">*La contraseña debe tener al menos 6 caracteres</span>
+    <ion-item>
+      <ion-label position="floating">Contraseña:</ion-label>
+      <ion-input required formControlName="contrasena" type="password"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" class="primary" (click)="login()">Iniciar sesión</ion-button>
+    <ion-button expand="full" class="primary" (click)="registrarse()">Registrarse</ion-button>
+  </div>
+</ion-content>

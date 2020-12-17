@@ -1,17 +1,43 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Mis referencias
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-progress-bar type="indeterminate" *ngIf="cargando"></ion-progress-bar>
+
+<ion-content [fullscreen]="true" *ngIf="!cargando">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Mis referencias</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-card *ngFor="let item of refBiblio">
+    <ion-item>
+      <ion-icon name="library-outline" slot="start"></ion-icon>
+      <ion-label>{{item.tituloPub}}</ion-label>
+      <ion-button fill="outline" slot="end" [routerLink]="['/tabs/tab2']" (click)="editarRefBibliografica(item)" style="margin:0;">
+        <ion-icon name="brush-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="outline" slot="end" (click)="eliminarReferencia(item)" style="margin:0;">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-card-content>
+      <p>Año de publicación: <b>{{item.anyopub}}</b>
+      <p>doi: <b>{{item.doi}}</b>
+      <p>Evento/Revista: <b>{{item.eventorevista}}</b>
+      <p *ngIf="item.tipoPub == 1">tipo de publicación: <b>Artículo de revista</b>
+      <p *ngIf="item.tipoPub == 2">tipo de publicación: <b>Articulo en evento (conferencia, seminario, etc.),</b>
+      <p *ngIf="item.tipoPub == 3">tipo de publicación: <b>Otro</b>
+    </ion-card-content>
+    <ion-item>
+      <ion-card-subtitle>Autores: <b>{{item.autores}}</b></ion-card-subtitle>
+    </ion-item>
+  </ion-card>
+
 </ion-content>
